@@ -4,32 +4,32 @@ import Link from "next/link";
 
 export default function Header() : React.ReactElement {
   return (
-    <header className="w-full flex items-center justify-between py-3 px-28 bg-white">
+    <header className="w-full flex items-center justify-between py-3 max-sm:py-2 px-6 md:px-28 bg-white">
       <span className="logo">
         <Image 
           src={"/img/logo.png"}
           alt="Logo of KostFast.app"
           width={65}
           height={40}
-          className="h-10 w-auto"
+          className="h-10 w-full"
         />
       </span>
       <nav className="cta-buttons flex items-center *:mx-1 text-sm">
         <Link href={"/maps"} className="flex items-center group px-3">
           <span className="icon overflow-hidden">
-            <svg className="translate-x-6 group-hover:translate-x-0 transition-all" width="24px" height="24px" viewBox="0 0 0.6 0.6" xmlns="http://www.w3.org/2000/svg">
+            <svg className="md:translate-x-6 md:group-hover:translate-x-0 transition-all" width="24px" height="24px" viewBox="0 0 0.6 0.6" xmlns="http://www.w3.org/2000/svg">
               <path 
                 className="fill-golden"
                 d="M0.487 0.058c0.02 0.015 0.033 0.04 0.039 0.066a0.03 0.03 0 0 1 0.002 0.001l0.061 0.028a0.02 0.02 0 0 1 0.012 0.018v0.371a0.02 0.02 0 0 1 -0.025 0.019l-0.17 -0.048 -0.202 0.056a0.02 0.02 0 0 1 -0.011 0L0.014 0.517a0.02 0.02 0 0 1 -0.014 -0.019V0.12c0 -0.013 0.013 -0.023 0.026 -0.019l0.171 0.05 0.087 -0.027q0.002 -0.001 0.004 -0.001c0.003 -0.02 0.013 -0.039 0.028 -0.057 0.019 -0.022 0.051 -0.035 0.083 -0.036 0.033 -0.002 0.058 0.005 0.087 0.028M0.04 0.146v0.336l0.146 0.043V0.189zm0.246 0.018 -0.06 0.018v0.338l0.152 -0.042v-0.099c0 -0.011 0.009 -0.02 0.02 -0.02s0.02 0.009 0.02 0.02v0.095l0.142 0.04V0.184l-0.034 -0.016q-0.001 0.005 -0.002 0.01A0.183 0.183 0 0 1 0.492 0.242l-0.074 0.093a0.02 0.02 0 0 1 -0.032 -0.001l-0.069 -0.101q-0.017 -0.024 -0.024 -0.043a0.111 0.111 0 0 1 -0.006 -0.025m0.115 -0.095c-0.022 0.001 -0.044 0.01 -0.055 0.022 -0.013 0.015 -0.019 0.029 -0.02 0.043 -0.002 0.017 0 0.029 0.004 0.041 0.003 0.009 0.009 0.02 0.019 0.034l0.054 0.079 0.057 -0.072a0.144 0.144 0 0 0 0.025 -0.05c0.007 -0.025 -0.004 -0.062 -0.024 -0.078 -0.021 -0.016 -0.037 -0.021 -0.061 -0.02m0.004 0.021c0.033 0 0.06 0.027 0.06 0.059a0.06 0.06 0 0 1 -0.06 0.059c-0.033 0 -0.06 -0.027 -0.06 -0.059s0.027 -0.059 0.06 -0.059m0 0.04a0.02 0.02 0 0 0 -0.02 0.02c0 0.011 0.009 0.02 0.02 0.02a0.02 0.02 0 0 0 0.02 -0.02 0.02 0.02 0 0 0 -0.02 -0.02"
               />
             </svg>
           </span>
-          <span className="text ml-2 underline">Buka Peta</span>
+          <span className="max-md:hidden text ml-2 underline">Buka Peta</span>
         </Link>
-        <Link href={"/register"} className="flex items-center w-[86px] py-1 border-2 border-sky text-sky font-medium overflow-hidden group">
-        <div className="wrapper flex items-center w-[172px] group-hover:translate-x-[-50%] transition-all">
-            <span className="text flex items-center justify-center w-[86px]">Daftar</span>
-            <span className="icon flex items-center justify-center w-[86px]">
+        <Link href={"/register"} className="flex items-center w-[86px] max-md:w-[34px] py-1 rounded border-2 border-sky text-sky font-medium overflow-hidden group">
+        <div className="wrapper flex items-center w-[172px] md:group-hover:translate-x-[-50%] transition-all">
+            <span className="max-md:hidden text flex items-center justify-center w-[86px]">Daftar</span>
+            <span className="icon flex items-center justify-center w-[86px] max-md:w-[32px]">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path 
                   className={"stroke-sky"}
@@ -105,10 +105,10 @@ export default function Header() : React.ReactElement {
             </span>
           </div>
         </Link>
-        <Link href={"/login"} className="flex items-center w-[86px] py-1 border-2 border-sky bg-sky text-white overflow-hidden group">
-          <div className="wrapper flex items-center w-[172px] group-hover:translate-x-[-50%] transition-all">
-            <span className="text flex items-center justify-center w-[86px]">Masuk</span>
-            <span className="icon flex items-center justify-center w-[86px]">
+        <Link href={"/login"} className="flex items-center w-[86px] max-md:w-[34px] py-1 rounded border-2 border-sky bg-sky text-white overflow-hidden group">
+          <div className="wrapper flex items-center w-[172px] md:group-hover:translate-x-[-50%] transition-all">
+            <span className="max-md:hidden text flex items-center justify-center w-[86px]">Masuk</span>
+            <span className="icon flex items-center justify-center w-[86px] max-md:w-[32px]">
               <svg width="24px" height="24px" viewBox="0 0 0.72 0.72" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path 
                   className="stroke-white"

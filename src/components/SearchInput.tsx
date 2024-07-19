@@ -27,7 +27,7 @@ export default function SearchInput({className, placeholder} : SearchInputProps)
             />
           </svg>
         </span>
-        <input name="q" type="text" className="ml-2 w-full outline-none bg-transparent" placeholder={placeholder} />
+        <input name="q" type="text" className="ml-2 w-full outline-none bg-transparent placeholder:font-light" placeholder={placeholder} />
       </div>
     </form>
   );

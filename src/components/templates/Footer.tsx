@@ -7,9 +7,9 @@ import SearchInput from "@components/SearchInput";
 export default function Footer () : React.ReactElement
 {
   return (
-    <footer className="w-full *:px-28 *:text-sm">
-      <section className="py-16 grid grid-flow-col gap-16 border-t-2 border-neutral-500 border-dashed">
-        <div className="flex flex-col">
+    <footer className="w-full max-md:*:px-6 *:px-28 *:text-sm max-sm:*:text-xs">
+      <section className="py-16 grid max-md:grid-cols-[repeat(3,minmax(100px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(100px,1fr))] max-md:gap-x-4 gap-16 border-t-2 border-neutral-500 border-dashed">
+        <div className="flex flex-col col-span-3">
           <SearchInput 
             placeholder="Cari tempat terdekat" 
             className="w-80 shadow-lg"

@@ -49,16 +49,16 @@ function Card({price, ratings}: CardProps) : React.ReactElement
         />
       </div>
       <div className="card-body">
-        <h3 className="font-medium">Nama Tempat</h3>
-        <h4>Alamat</h4>
+        <h3 className="font-medium max-sm:text-sm">Nama Tempat</h3>
+        <h4 className="max-sm:text-xs">Alamat</h4>
       </div>
-      <div className="mt-6 card-more flex items-center justify-between">
+      <div className="mt-6 max-sm:mt-3 card-more flex max-sm:flex-col-reverse items-center max-sm:items-start max-sm:text-sm justify-between">
         <span className="font-medium">{toCurrency(price)}</span>
-        <span className="ratings flex items-center px-2">
+        <span className="ratings flex items-center px-2 max-sm:px-0">
           {
             [...Array(Math.floor(ratings))].map((item, index) => {
               return (
-                <svg key={index} width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg key={index} className="max-sm:w-[12px]" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path 
                     className="fill-yellow-500"
                     d="M22 9.81a1 1 0 0 0-.83-.69l-5.7-.78-2.59-4.81a1 1 0 0 0-1.76 0L8.57 8.34l-5.7.78a1 1 0 0 0-.82.69 1 1 0 0 0 .28 1l4.09 3.73-1 5.24a1 1 0 0 0 1.46 1.12L12 18.38l5.12 2.52a1 1 0 0 0 .44.1 1 1 0 0 0 1-1.18l-1-5.24 4.09-3.73A1 1 0 0 0 22 9.81"
@@ -70,7 +70,7 @@ function Card({price, ratings}: CardProps) : React.ReactElement
           {
             [...Array(5-Math.floor(ratings))].map((item, index) => {
               return (
-                <svg key={index} width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg key={index} className="max-sm:w-[12px]" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path 
                     className="fill-none stroke-yellow-500"
                     d="M22 9.81a1 1 0 0 0-.83-.69l-5.7-.78-2.59-4.81a1 1 0 0 0-1.76 0L8.57 8.34l-5.7.78a1 1 0 0 0-.82.69 1 1 0 0 0 .28 1l4.09 3.73-1 5.24a1 1 0 0 0 1.46 1.12L12 18.38l5.12 2.52a1 1 0 0 0 .44.1 1 1 0 0 0 1-1.18l-1-5.24 4.09-3.73A1 1 0 0 0 22 9.81"
@@ -200,12 +200,12 @@ export default function Home() : React.ReactElement {
     <main>
       <section className="hero-section">
         <div className="hero-wrapper flex flex-col items-center justify-center">
-          <SearchInput placeholder="Kosan dekat kampus" className="w-[40vw] bg-white/60 border-2 border-white shadow-lg shadow-white/60 text-sm backdrop-blur-sm"/>
+          <SearchInput placeholder="Kosan dekat kampus" className="max-md:w-[80vw] w-[40vw] bg-white/60 border-2 border-white shadow-lg shadow-white/60 text-sm backdrop-blur-sm"/>
         </div>
       </section>
-      <section className="px-28 py-24">
+      <section className="max-md:px-6 px-28 py-24">
         <h2 className="text-xl font-semibold text-center mb-16">Rekomendasi Sekitar Sini!</h2>
-        <div className="grid grid-cols-5 gap-6">
+        <div className="grid max-sm:grid-cols-2 grid-cols-[repeat(auto-fit,minmax(200px,_1fr))] gap-6">
           {
             places.map((place, i) => {
               return <Card key={i} price={120000} ratings={3} />
@@ -213,8 +213,8 @@ export default function Home() : React.ReactElement {
           }
         </div>
       </section>
-      <section className="grid grid-cols-2 gap-2 py-20 mb-20">
-        <div className="w-full h-[66dvh] rounded-r-[36px] overflow-hidden bg-neutral-100">
+      <section className="max-md:flex max-md:flex-col md:grid md:grid-cols-2 gap-2 py-20 mb-20">
+        <div className="w-full h-[66vh] max-md:h-[36vh] rounded-r-[36px] max-md:rounded-r-full overflow-hidden bg-neutral-100">
           <Image
             className="size-full object-cover"
             src={"https://images.unsplash.com/photo-1528255671579-01b9e182ed1d?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
@@ -224,8 +224,8 @@ export default function Home() : React.ReactElement {
           />
         </div>
         <div className="px-6 py-4">
-          <h2 className="text-[3.6dvw] italic">Temukan kenyamanan <span className="text-sky underline decoration-golden">tempat istirahat</span> terbaik yang tak pernah terlupakan.</h2>
-          <Link href={"/maps"} className="w-max flex items-center px-4 py-2 border-2 border-golden bg-white relative before:absolute before:top-0 before:left-0 before:z-[-1] before:size-full before:translate-x-[4px] hover:before:translate-x-[8px] before:translate-y-[4px] hover:before:translate-y-[8px] before:border-2 before:border-inherit before:transition-all">
+          <h2 className="text-[2.5rem] italic">Temukan kenyamanan <span className="text-sky block underline decoration-golden">tempat istirahat</span> terbaik yang tak pernah terlupakan.</h2>
+          <Link href={"/maps"} className="w-max mt-6 flex items-center px-4 py-2 border-2 border-golden bg-white relative before:absolute before:top-0 before:left-0 before:z-[-1] before:size-full before:translate-x-[4px] hover:before:translate-x-[8px] before:translate-y-[4px] hover:before:translate-y-[8px] before:border-2 before:border-inherit before:transition-all">
             <span className="icon">
               <svg className="flex" width="24px" height="24px" viewBox="0 0 0.6 0.6" xmlns="http://www.w3.org/2000/svg">
                 <path 
