@@ -225,7 +225,7 @@ export default function Home() : React.ReactElement {
         </div>
         <div className="px-6 py-4">
           <h2 className="text-[2.5rem] italic">Temukan kenyamanan <span className="text-sky block underline decoration-golden">tempat istirahat</span> terbaik yang tak pernah terlupakan.</h2>
-          <Link href={"/maps"} className="w-max mt-6 flex items-center px-4 py-2 border-2 border-golden bg-white relative before:absolute before:top-0 before:left-0 before:z-[-1] before:size-full before:translate-x-[4px] hover:before:translate-x-[8px] before:translate-y-[4px] hover:before:translate-y-[8px] before:border-2 before:border-inherit before:transition-all">
+          <Link href={"/peta"} className="w-max mt-6 flex items-center px-4 py-2 border-2 border-golden bg-white relative before:absolute before:top-0 before:left-0 before:z-[-1] before:size-full before:translate-x-[4px] hover:before:translate-x-[8px] before:translate-y-[4px] hover:before:translate-y-[8px] before:border-2 before:border-inherit before:transition-all">
             <span className="icon">
               <svg className="flex" width="24px" height="24px" viewBox="0 0 0.6 0.6" xmlns="http://www.w3.org/2000/svg">
                 <path 

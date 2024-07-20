@@ -15,7 +15,7 @@ export default function Header() : React.ReactElement {
         />
       </span>
       <nav className="cta-buttons flex items-center *:mx-1 text-sm">
-        <Link href={"/maps"} className="flex items-center group px-3">
+        <Link href={"/peta"} className="flex items-center group px-3">
           <span className="icon overflow-hidden">
             <svg className="md:translate-x-6 md:group-hover:translate-x-0 transition-all" width="24px" height="24px" viewBox="0 0 0.6 0.6" xmlns="http://www.w3.org/2000/svg">
               <path 
@@ -26,7 +26,7 @@ export default function Header() : React.ReactElement {
           </span>
           <span className="max-md:hidden text ml-2 underline">Buka Peta</span>
         </Link>
-        <Link href={"/register"} className="flex items-center w-[86px] max-md:w-[34px] py-1 rounded border-2 border-sky text-sky font-medium overflow-hidden group">
+        <Link href={"/daftar"} className="flex items-center w-[86px] max-md:w-[34px] py-1 rounded border-2 border-sky text-sky font-medium overflow-hidden group">
         <div className="wrapper flex items-center w-[172px] md:group-hover:translate-x-[-50%] transition-all">
             <span className="max-md:hidden text flex items-center justify-center w-[86px]">Daftar</span>
             <span className="icon flex items-center justify-center w-[86px] max-md:w-[32px]">
@@ -105,7 +105,7 @@ export default function Header() : React.ReactElement {
             </span>
           </div>
         </Link>
-        <Link href={"/login"} className="flex items-center w-[86px] max-md:w-[34px] py-1 rounded border-2 border-sky bg-sky text-white overflow-hidden group">
+        <Link href={"/masuk"} className="flex items-center w-[86px] max-md:w-[34px] py-1 rounded border-2 border-sky bg-sky text-white overflow-hidden group">
           <div className="wrapper flex items-center w-[172px] md:group-hover:translate-x-[-50%] transition-all">
             <span className="max-md:hidden text flex items-center justify-center w-[86px]">Masuk</span>
             <span className="icon flex items-center justify-center w-[86px] max-md:w-[32px]">
