@@ -4,7 +4,7 @@ import SearchInput from "@components/SearchInput";
 
 import "@assets/style/home-style.css";
 
-interface CardProps 
+interface Place 
 {
   // src : string,
   // name : string,
@@ -13,7 +13,7 @@ interface CardProps
   ratings : number,
 }
 
-function Card({price, ratings}: CardProps) : React.ReactElement
+function Place({price, ratings}: Place) : React.ReactElement
 {
   function toCurrency(x: number) : string
   {
@@ -208,7 +208,7 @@ export default function Home() : React.ReactElement {
         <div className="grid max-sm:grid-cols-2 grid-cols-[repeat(auto-fit,minmax(200px,_1fr))] gap-6">
           {
             places.map((place, i) => {
-              return <Card key={i} price={120000} ratings={3} />
+              return <Place key={i} price={120000} ratings={3} />
             })
           }
         </div>
