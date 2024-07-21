@@ -1,13 +1,14 @@
 'use client';
 
+import { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css"
-import "leaflet-defaulticon-compatibility"
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
-import "@assets/style/custom-leaflet.css"
+import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility";
+import "leaflet-rotate";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import "@assets/style/custom-leaflet.css";
 
 function MapPlaceholder() : React.ReactElement
-
 {
   return (
     <p>
@@ -18,15 +19,45 @@ function MapPlaceholder() : React.ReactElement
 
 export default function Map() : React.ReactElement
 {
+  let mapRef = useRef();
+
+  let state = {
+    long: 0.7862307052910213,
+    lat: 127.37196452395239,
+    center: [0.7862307052910213, 127.37196452395239],
+    zoom: 14
+  };
+
   return (
-    <MapContainer className="w-full h-full" center={[0.7862307052910213, 127.37196452395239]} zoom={14} scrollWheelZoom={true} placeholder={ <MapPlaceholder /> }>
+    <MapContainer
+      className="w-full h-full"
+      whenReady={(mapInstance : any) => {
+        mapRef.current = mapInstance;
+      }}
+      center={[state.long, state.lat]}
+      zoom={state.zoom}
+      zoomControl={true}
+      rotate={true}
+      touchRotate={true}
+      rotateControl={{
+        closeOnZeroBearing: false,
+        position: 'topright',
+      }}
+      bearing={0}
+      placeholder={ <MapPlaceholder /> }
+    >
       <TileLayer
-        // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        // Deafult Style
+        url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
+        // attribution='&amp;copy <a href="https:/www./openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        
+        // Real World Style 
+        // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+        // attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
       />
-      <Marker position={[0.7862307052910213, 127.37196452395239]} title="Fenakopa Home">
+      <Marker position={[state.long, state.lat]} draggable={false} title="Fenakopa Home">
         <Popup>
-          Fenakopa Home
+          <span className="font-bold">Fenakopa Home</span>
         </Popup>
       </Marker>
     </MapContainer>
