@@ -6,8 +6,12 @@
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out,
 .leaflet-control-attribution {
-  /* filter: saturate(0) contrast(100%); */
-  /* filter: grayscale(66%) hue-rotate(80deg); */
-  filter: saturate(160%);
-  /* filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%); */
+  filter: saturate(666%);
+}
+
+.leaflet-touch .leaflet-bar {
+  border: none;
+  box-shadow: #00000046 0 3px 6px;
+  border-radius: 6px;
+  overflow: hidden;
 }
