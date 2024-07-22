@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Header() : React.ReactElement {
   return (
     <header className="w-full flex items-center justify-between py-3 max-sm:py-2 px-6 md:px-28 bg-white">
-      <span className="logo">
+      <Link href='/' className="logo">
         <Image 
           src={"/img/logo.png"}
           alt="Logo of KostFast.app"
@@ -13,7 +13,7 @@ export default function Header() : React.ReactElement {
           height={40}
           className="h-10 w-full"
         />
-      </span>
+      </Link>
       <nav className="cta-buttons flex items-center *:mx-1 text-sm">
         <Link href={"/peta"} className="flex items-center group px-3">
           <span className="icon overflow-hidden">

@@ -1,201 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import SearchInput from "@components/SearchInput";
+import Place from "@components/Place";
+
+import { places } from "@/utils/places";
 
 import "@assets/style/home-style.css";
 
-interface Place 
-{
-  // src : string,
-  // name : string,
-  // address : string,
-  price : number,
-  ratings : number,
-}
-
-function Place({price, ratings}: Place) : React.ReactElement
-{
-  function toCurrency(x: number) : string
-  {
-    let result = x.toString();
-    if (x >= 1000000000) {
-      result = parseFloat((x / 1000000000).toFixed(3)).toString().replace(/\.0$/, '') + "M";
-    } else if (x >= 1000000) {
-      result = parseFloat((x / 1000000).toFixed(3)).toString().replace(/\.0$/, '') + "jt";
-    } else if (x > 1000) {
-      result = parseFloat((x / 1000).toFixed(3)).toString().replace(/\.0$/, '') + "rb";
-    }
-
-    result = result.replace('.', ',');
-
-    const currency = result.slice(-2);
-
-    if (result.split(",")[1] === "000"+currency) {
-      result = result.split(",")[0]+currency;
-    }
-
-    return "Rp" + result + "/bln";
-  }
-
+function Places() : React.ReactElement {
   return (
-    <div className="card flex flex-col">
-      <div className="card-image bg-neutral-100 mb-1 overflow-hidden flex items-center justify-center rounded-2xl">
-        <Image 
-          className="size-full object-cover"
-          src={"/img/not-found.jpg"}
-          alt="Image of Card"
-          width={150}
-          height={100}
-        />
-      </div>
-      <div className="card-body">
-        <h3 className="font-medium max-sm:text-sm">Nama Tempat</h3>
-        <h4 className="max-sm:text-xs">Alamat</h4>
-      </div>
-      <div className="mt-6 max-sm:mt-3 card-more flex max-sm:flex-col-reverse items-center max-sm:items-start max-sm:text-sm justify-between">
-        <span className="font-medium">{toCurrency(price)}</span>
-        <span className="ratings flex items-center px-2 max-sm:px-0">
-          {
-            [...Array(Math.floor(ratings))].map((item, index) => {
-              return (
-                <svg key={index} className="max-sm:w-[12px]" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path 
-                    className="fill-yellow-500"
-                    d="M22 9.81a1 1 0 0 0-.83-.69l-5.7-.78-2.59-4.81a1 1 0 0 0-1.76 0L8.57 8.34l-5.7.78a1 1 0 0 0-.82.69 1 1 0 0 0 .28 1l4.09 3.73-1 5.24a1 1 0 0 0 1.46 1.12L12 18.38l5.12 2.52a1 1 0 0 0 .44.1 1 1 0 0 0 1-1.18l-1-5.24 4.09-3.73A1 1 0 0 0 22 9.81"
-                  />
-                </svg>
-              )
-            })
-          }
-          {
-            [...Array(5-Math.floor(ratings))].map((item, index) => {
-              return (
-                <svg key={index} className="max-sm:w-[12px]" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path 
-                    className="fill-none stroke-yellow-500"
-                    d="M22 9.81a1 1 0 0 0-.83-.69l-5.7-.78-2.59-4.81a1 1 0 0 0-1.76 0L8.57 8.34l-5.7.78a1 1 0 0 0-.82.69 1 1 0 0 0 .28 1l4.09 3.73-1 5.24a1 1 0 0 0 1.46 1.12L12 18.38l5.12 2.52a1 1 0 0 0 .44.1 1 1 0 0 0 1-1.18l-1-5.24 4.09-3.73A1 1 0 0 0 22 9.81"
-                  />
-                </svg>
-              )
-            })
-          }
-        </span>
-      </div>
-    </div>
-  );
+    <>
+      {
+      places.map((place, i) => {
+        return <Place key={i} name={place.name} slug={place.slug} address={place.address} imgSrc={place.imgSrc} price={place.price} ratings={place.ratings} billingCycle={place.billingCycle} />
+      })
+      }
+    </>
+  )
 }
 
 export default function Home() : React.ReactElement {
-  // return (
-  //   <main className="flex min-h-screen flex-col items-center justify-between p-24">
-  //     <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-  //       <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-  //         Get started by editing&nbsp;
-  //         <code className="font-mono font-bold">src/app/page.tsx</code>
-  //       </p>
-  //       <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-  //         <a
-  //           className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-  //           href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-  //           target="_blank"
-  //           rel="noopener noreferrer"
-  //         >
-  //           By{" "}
-  //           <Image
-  //             src="/vercel.svg"
-  //             alt="Vercel Logo"
-  //             className="dark:invert"
-  //             width={100}
-  //             height={24}
-  //             priority
-  //           />
-  //         </a>
-  //       </div>
-  //     </div>
-
-  //     <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-  //       <Image
-  //         className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-  //         src="/next.svg"
-  //         alt="Next.js Logo"
-  //         width={180}
-  //         height={37}
-  //         priority
-  //       />
-  //     </div>
-
-  //     <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-  //       <a
-  //         href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-  //         className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //       >
-  //         <h2 className="mb-3 text-2xl font-semibold">
-  //           Docs{" "}
-  //           <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-  //             -&gt;
-  //           </span>
-  //         </h2>
-  //         <p className="m-0 max-w-[30ch] text-sm opacity-50">
-  //           Find in-depth information about Next.js features and API.
-  //         </p>
-  //       </a>
-
-  //       <a
-  //         href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-  //         className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //       >
-  //         <h2 className="mb-3 text-2xl font-semibold">
-  //           Learn{" "}
-  //           <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-  //             -&gt;
-  //           </span>
-  //         </h2>
-  //         <p className="m-0 max-w-[30ch] text-sm opacity-50">
-  //           Learn about Next.js in an interactive course with&nbsp;quizzes!
-  //         </p>
-  //       </a>
-
-  //       <a
-  //         href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-  //         className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //       >
-  //         <h2 className="mb-3 text-2xl font-semibold">
-  //           Templates{" "}
-  //           <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-  //             -&gt;
-  //           </span>
-  //         </h2>
-  //         <p className="m-0 max-w-[30ch] text-sm opacity-50">
-  //           Explore starter templates for Next.js.
-  //         </p>
-  //       </a>
-
-  //       <a
-  //         href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-  //         className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //       >
-  //         <h2 className="mb-3 text-2xl font-semibold">
-  //           Deploy{" "}
-  //           <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-  //             -&gt;
-  //           </span>
-  //         </h2>
-  //         <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-  //           Instantly deploy your Next.js site to a shareable URL with Vercel.
-  //         </p>
-  //       </a>
-  //     </div>
-  //   </main>
-  // );
-  const places = [1,2,3,4,5];
   return (
     <main>
       <section className="hero-section">
@@ -205,12 +29,8 @@ export default function Home() : React.ReactElement {
       </section>
       <section className="max-md:px-6 px-28 py-24">
         <h2 className="text-xl font-semibold text-center mb-16">Rekomendasi Sekitar Sini!</h2>
-        <div className="grid max-sm:grid-cols-2 grid-cols-[repeat(auto-fit,minmax(200px,_1fr))] gap-6">
-          {
-            places.map((place, i) => {
-              return <Place key={i} price={120000} ratings={3} />
-            })
-          }
+        <div className="grid max-sm:grid-cols-2 max-sm:gap-x-3 grid-cols-[repeat(auto-fit,minmax(200px,_1fr))] gap-6">
+          <Places />
         </div>
       </section>
       <section className="max-md:flex max-md:flex-col md:grid md:grid-cols-2 gap-2 py-20 mb-20">
