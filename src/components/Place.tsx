@@ -1,6 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import { slugToLink } from "@/utils/slugToLink";
+import { toCurrency } from "@/utils/toCurrency";
+
 export interface PlaceProps
 {
   imgSrc : string,
@@ -14,38 +17,16 @@ export interface PlaceProps
 
 export default function Place({name, imgSrc, address, price, ratings, billingCycle, slug}: PlaceProps) : React.ReactElement
 {
-  function toCurrency(x: number) : string
+  
+  function pricePlace(price : number, billCycle : 'monthly' | 'annual') : string
   {
-    let result = x.toString();
-    if (x >= 1000000000) {
-      result = parseFloat((x / 1000000000).toFixed(3)).toString().replace(/\.0$/, '') + "M";
-    } else if (x >= 1000000) {
-      result = parseFloat((x / 1000000).toFixed(3)).toString().replace(/\.0$/, '') + "jt";
-    } else if (x > 1000) {
-      result = parseFloat((x / 1000).toFixed(3)).toString().replace(/\.0$/, '') + "rb";
-    }
-
-    result = result.replace('.', ',');
-
-    const currency = result.slice(-2);
-
-    if (result.split(",")[1] === "000"+currency) {
-      result = result.split(",")[0]+currency;
-    }
-
-    const cycle = billingCycle == "annual" ? "thn" : "bln";
-
-    return "Rp" + result + "/" + cycle;
-  }
-
-  function slugToLink(slug: string) : string
-  {
-    return "/home/"+slug;
+    const cycle = billCycle == "annual" ? "thn" : "bln";
+    return toCurrency(price)+ "/" + cycle
   }
 
   return (
     <div className="card flex flex-col max-w-[300px]">
-      <Link href={slugToLink(slug)} className="card-image bg-neutral-100 mb-1 overflow-hidden flex items-center justify-center rounded-2xl">
+      <Link href={slugToLink(slug, '/place')} className="card-image bg-neutral-100 mb-1 overflow-hidden flex items-center justify-center rounded-2xl">
         <Image 
           className="size-full object-cover aspect-[3/2]"
           src={imgSrc}
@@ -55,12 +36,12 @@ export default function Place({name, imgSrc, address, price, ratings, billingCyc
         />
       </Link>
       <div className="card-body p-2 pt-0 rounded-xl hover:bg-neutral-100">
-        <Link href={slugToLink(slug)}>
+        <Link href={slugToLink(slug, '/place')}>
           <h3 className="font-medium max-sm:text-sm">{name}</h3>
           <h4 className="max-sm:text-xs">{address}</h4>
         </Link>
         <div className="mt-2 max-sm:mt-1 card-more flex max-sm:flex-col-reverse items-center max-sm:items-start max-sm:text-sm justify-between">
-          <span className="font-medium">{toCurrency(price)}</span>
+          <span className="font-medium">{pricePlace(price, billingCycle)}</span>
           <span className="ratings flex items-center px-2 max-sm:px-0">
             {
               [...Array(Math.floor(ratings))].map((item, index) => {
